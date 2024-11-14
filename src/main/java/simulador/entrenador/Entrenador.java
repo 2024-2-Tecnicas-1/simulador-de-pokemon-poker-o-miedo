@@ -3,6 +3,7 @@ package simulador.entrenador;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import simulador.pokemon.Pokemon;
 public abstract class Entrenador {
     public String nombre;
     public List <Pokemon> Pokemones;
