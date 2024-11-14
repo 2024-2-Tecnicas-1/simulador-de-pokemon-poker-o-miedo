@@ -25,27 +25,28 @@ public class TipoPokemon {
 
     public static double obtenerMultiplicadorDeDaño(TipoPokemon atacante, TipoPokemon defensor) {
         if (atacante == FUEGO) {
-            if (defensor == PLANTAVENENO) return 2.0; // Fuego > Planta/Veneno
-            if (defensor == AGUA) return 0.5;          // Fuego < Agua
+            if (defensor == PLANTAVENENO) return 2.0; 
+            if (defensor == AGUA) return 0.5;          
         } else if (atacante == AGUA) {
-            if (defensor == FUEGO) return 2.0;         // Agua > Fuego
-            if (defensor == PLANTAVENENO) return 0.5;  // Agua < Planta/Veneno
+            if (defensor == FUEGO) return 2.0;         
+            if (defensor == PLANTAVENENO) return 0.5;  
         } else if (atacante == PLANTAVENENO) {
-            if (defensor == AGUA) return 2.0;          // Planta/Veneno > Agua
-            if (defensor == FUEGO) return 0.5;         // Planta/Veneno < Fuego
+            if (defensor == AGUA) return 2.0;          
+            if (defensor == FUEGO) return 0.5;         
         } else if (atacante == ELECTRICO) {
-            if (defensor == AGUAVENENO) return 2.0;    // Eléctrico > Agua/Veneno
-            if (defensor == TIERRAROCA) return 0.0;    // Eléctrico no afecta a Tierra/Roca
+            if (defensor == AGUAVENENO) return 2.0;    
+            if (defensor == TIERRAROCA) return 0.0;    
         } else if (atacante == TIERRAROCA) {
-            if (defensor == ELECTRICO) return 2.0;     // Tierra/Roca > Eléctrico
-            if (defensor == AGUA) return 0.5;          // Tierra/Roca < Agua
+            if (defensor == ELECTRICO) return 2.0;     
+            if (defensor == AGUA) return 0.5;          
         } else if (atacante == VOLADORVENENO) {
-            if (defensor == LUCHA) return 2.0;         // Volador/Veneno > Lucha
-            if (defensor == TIERRAROCA) return 0.5;    // Volador/Veneno < Tierra/Roca
+            if (defensor == LUCHA) return 2.0;         
+            if (defensor == TIERRAROCA) return 0.5;    
         } else if (atacante == LUCHA) {
-            if (defensor == NORMALVOLADOR) return 2.0; // Lucha > Normal/Volador
+            if (defensor == NORMALVOLADOR) return 2.0; 
         }
 
         return 1.0; 
     }
+    
 }

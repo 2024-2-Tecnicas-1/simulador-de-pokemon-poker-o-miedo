@@ -6,9 +6,11 @@ import java.util.Scanner;
 import simulador.pokemon.Pokemon;
 
 public abstract class Entrenador {
+    //atributos del personaje
     public String nombre;
     public List <Pokemon> Pokemones; 
     
+    //constructor 
     public Entrenador(String nombre){
         this.nombre=nombre;
         this.Pokemones= new ArrayList<>();
@@ -17,7 +19,7 @@ public abstract class Entrenador {
     public void Agregarpokemon(Pokemon Pokemon){
         Pokemones.add (Pokemon);
         System.out.println(Pokemon.getNombre()+"se añadio al equipo"+nombre);
-    
+        
     }
     //el metodo para el entrenamiento de los pokemones
     public void Entrenarpokemon (Pokemon Pokemon){
