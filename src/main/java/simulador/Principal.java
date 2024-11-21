@@ -11,7 +11,7 @@ public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Lista de entrenadores
+        
         List<Entrenador> entrenadores = new ArrayList<>();
 
         // Bienvenida
@@ -20,13 +20,14 @@ public class Principal {
         boolean salir = false;
 
         while (!salir) {
-            // Menú principal
+          
             System.out.println("\n Menu Principal ");
             System.out.println("1. Crear Entrenador");
             System.out.println("2. Agregar Pokemon a un Entrenador");
-            System.out.println("3. Mostrar Entrenadores y sus Pokemon");
-            System.out.println("4. Iniciar Batalla");
-            System.out.println("5. Salir");
+            System.out.println("3. registrar pokemon");
+            System.out.println("4. Mostrar Entrenadores y sus Pokemon");
+            System.out.println("5. Iniciar Batalla");
+            System.out.println("6. Salir");
             System.out.print("Selecciona una opcion: ");
 
             int opcion = scanner.nextInt();
@@ -34,7 +35,7 @@ public class Principal {
 
             switch (opcion) {
                 case 1:
-                    // Crear un nuevo entrenador
+                    
                     System.out.print("Introduce el nombre del entrenador: ");
                     String nombreEntrenador = scanner.nextLine();
                     Entrenador nuevoEntrenador = new Entrenador(nombreEntrenador) {
@@ -44,7 +45,7 @@ public class Principal {
                     break;
 
                 case 2:
-                    // Seleccionar un entrenador
+                    
                     if (entrenadores.isEmpty()) {
                         System.out.println("No hay entrenadores creados.");
                         break;
@@ -77,7 +78,7 @@ public class Principal {
                     System.out.println("10. Exeggcute");
 
                     int opcionPokemon = scanner.nextInt();
-                    scanner.nextLine(); // Limpiar buffer
+                    scanner.nextLine(); 
 
                     Pokemon pokemonSeleccionado = null;
                     switch (opcionPokemon) {
@@ -122,7 +123,7 @@ public class Principal {
                     break;
 
                 case 3:
-                    // Mostrar entrenadores y sus Pokémon
+                    
                     if (entrenadores.isEmpty()) {
                         System.out.println("No hay entrenadores creados.");
                     } else {
@@ -133,7 +134,7 @@ public class Principal {
                     break;
 
                 case 4:
-                    // Iniciar batalla entre entrenadores
+                    
                     if (entrenadores.size() < 2) {
                         System.out.println("Se necesitan al menos dos entrenadores para una batalla.");
                         break;
@@ -145,7 +146,7 @@ public class Principal {
                     }
 
                     int indiceEntrenador1 = scanner.nextInt();
-                    scanner.nextLine(); // Limpiar buffer
+                    scanner.nextLine();
 
                     System.out.println("Selecciona el segundo entrenador:");
                     for (int i = 0; i < entrenadores.size(); i++) {
@@ -153,7 +154,7 @@ public class Principal {
                     }
 
                     int indiceEntrenador2 = scanner.nextInt();
-                    scanner.nextLine(); // Limpiar buffer
+                    scanner.nextLine();
 
                     if (indiceEntrenador1 == indiceEntrenador2
                             || indiceEntrenador1 < 1 || indiceEntrenador1 > entrenadores.size()
@@ -163,7 +164,7 @@ public class Principal {
                         Entrenador entrenador1 = entrenadores.get(indiceEntrenador1 - 1);
                         Entrenador entrenador2 = entrenadores.get(indiceEntrenador2 - 1);
 
-                        // Crear una instancia de Batalla y llamar al método iniciarBatalla
+                       
                         Batalla batalla = new Batalla();
                         batalla.iniciarBatalla(entrenador1, entrenador2);
                     }

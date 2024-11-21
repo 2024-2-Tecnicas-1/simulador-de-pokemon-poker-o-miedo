@@ -17,22 +17,22 @@ public class Batalla {
         }
 
         while (pokemon1.getVida() > 0 && pokemon2.getVida() > 0) {
-            // Turno del primer entrenador
+        
             System.out.println("\nTurno de " + pokemon1.getNombre());
             mostrarMenuBatalla(entrenador1, pokemon1, pokemon2);
 
-            // Si pokemon2 ya está vencido, terminar la batalla
+            
             if (pokemon2.getVida() <= 0) break;
 
-            // Turno del segundo entrenador
+           
             System.out.println("\nTurno de " + pokemon2.getNombre());
             mostrarMenuBatalla(entrenador2, pokemon2, pokemon1);
 
-            // Si pokemon1 ya está vencido, terminar la batalla
+            
             if (pokemon1.getVida() <= 0) break;
         }
 
-        // Se determina el ganador
+       
         if (pokemon1.getVida() > 0) {
             System.out.println("\n" + pokemon1.getNombre() + " de " + entrenador1.getNombre() + " gano la batalla.");
         } else {
@@ -56,19 +56,18 @@ public class Batalla {
                 realizarAtaque(pokemonAtacante, pokemonDefensor);
                 break;
             case 2:
-                Pokemon nuevoPokemon = entrenador.PrepararBatalla(); // Cambiar Pokémon
+                Pokemon nuevoPokemon = entrenador.PrepararBatalla();
                 if (nuevoPokemon != null) {
-                    pokemonAtacante = nuevoPokemon; // Se cambia el Pokémon actual
+                    pokemonAtacante = nuevoPokemon;
                 }
                 break;
             case 3:
-                // En este caso, solo se ha mencionado un posible uso de objetos,
-                // si se desea implementar este paso, podría ir aquí.
+                
                 System.out.println("Aún no se implementan objetos.");
                 break;
             default:
                 System.out.println("Opcion no valida, intenta de nuevo.");
-                mostrarMenuBatalla(entrenador, pokemonAtacante, pokemonDefensor); // Volver a mostrar el menú
+                mostrarMenuBatalla(entrenador, pokemonAtacante, pokemonDefensor);
                 break;
         }
     }

@@ -1,7 +1,5 @@
 package simulador.pokemon;
 
-import java.util.List;
-
 public abstract class Pokemon {
 
     private String nombre;
