@@ -10,7 +10,7 @@ import simulador.objetos.Elixir;
 public abstract class Entrenador {
     private String nombre;
     private List<Pokemon> Pokemones;
-    private List<Object> objetos;  // Lista de objetos disponibles para la batalla
+    private List<Object> objetos;  
 
     public Entrenador(String nombre) {
         this.nombre = nombre;
@@ -50,7 +50,7 @@ public abstract class Entrenador {
         System.out.println("Nuevo Pokemon " + nombre + " registrado y añadido al equipo.");
     }
 
-    // Menú para entrenar el Pokémon
+    
     public void EntrenarPokemon(Pokemon pokemon) {
         Scanner sc = new Scanner(System.in);
         
@@ -61,11 +61,11 @@ public abstract class Entrenador {
         int opcion = sc.nextInt();
         
         if (opcion == 1) {
-            int nuevaVida = (int) (pokemon.getVida() * 1.1);  // Aumenta la vida un 10%
+            int nuevaVida = (int) (pokemon.getVida() * 1.1);  
             pokemon.setVida(nuevaVida);
             System.out.println(pokemon.getNombre() + " ha aumentado su vida a " + nuevaVida);
         } else if (opcion == 2) {
-            double nuevoPataque = pokemon.getPataque() * 1.1;  // Aumenta el ataque un 10%
+            double nuevoPataque = pokemon.getPataque() * 1.1;  
             pokemon.setPataque(nuevoPataque);
             System.out.println(pokemon.getNombre() + " ha aumentado su ataque a " + nuevoPataque);
         } else {
@@ -108,15 +108,15 @@ public abstract class Entrenador {
         return pokemonSeleccionado;
     }
 
-    // Método para realizar el ataque y reducir vida
+    
     public void RealizarAtaque(Pokemon atacante, Pokemon defensor) {
         double dano = atacante.getPataque();
         double nuevaVida = defensor.getVida() - dano;
-        defensor.setVida((int) Math.max(nuevaVida, 0));  // Aseguramos que la vida no sea negativa
+        defensor.setVida((int) Math.max(nuevaVida, 0));  
         System.out.println(atacante.getNombre() + " ataca a " + defensor.getNombre() + " causando " + dano + " de dano. Vida restante de " + defensor.getNombre() + ": " + defensor.getVida());
     }
 
-    // Usar un objeto durante la batalla
+    
     public void UsarObjeto(Pokemon pokemon) {
         Scanner sc = new Scanner(System.in);
 
@@ -140,7 +140,7 @@ public abstract class Entrenador {
     public void ParticiparBatalla(Entrenador oponente) {
         System.out.println(nombre + " va a pelear contra " + oponente.getNombre());
 
-        // Seleccionamos los Pokemon para la batalla
+        
         Pokemon miPokemon = this.PrepararBatalla();
         Pokemon pokemonOponente = oponente.PrepararBatalla();
 
@@ -149,14 +149,13 @@ public abstract class Entrenador {
             return;
         }
 
-        // Ejemplo simple: un solo ataque entre los Pokemon
+        
         RealizarAtaque(miPokemon, pokemonOponente);
 
-        // Usar objetos
+        
         UsarObjeto(miPokemon);
         UsarObjeto(pokemonOponente);
 
-        // Verificamos si el Pokemon oponente ha perdido toda su vida
         if (pokemonOponente.getVida() <= 0) {
             System.out.println(pokemonOponente.getNombre() + " ha sido derrotado.");
         }
