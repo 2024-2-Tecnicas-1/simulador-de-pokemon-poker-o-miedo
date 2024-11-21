@@ -16,7 +16,6 @@ public abstract class Entrenador {
         this.nombre = nombre;
         this.Pokemones = new ArrayList<>();
         this.objetos = new ArrayList<>();
-        // Agregar objetos iniciales
         objetos.add(new Pocion());
         objetos.add(new Elixir());
     }
@@ -41,10 +40,10 @@ public abstract class Entrenador {
         System.out.println("Ingrese el poder de ataque del Pokemon: ");
         double pataque = sc.nextDouble();
 
-        // Crear un nuevo Pokemon con los datos proporcionados
-        Pokemon nuevoPokemon = new Pokemon(nombre, vida, pataque, tipo, "Normal");
+        
+        Pokemon nuevoPokemon = Pokemon(nombre, vida, pataque, tipo, "Normal");
 
-        // Agregarlo al equipo del entrenador
+        
         AgregarPokemon(nuevoPokemon);
 
         System.out.println("Nuevo Pokemon " + nombre + " registrado y añadido al equipo.");
@@ -167,5 +166,9 @@ public abstract class Entrenador {
 
     public List<Pokemon> getPokemones() {
         return Pokemones;
+    }
+
+    private Pokemon Pokemon(String nombre, int vida, double pataque, String tipo, String normal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
