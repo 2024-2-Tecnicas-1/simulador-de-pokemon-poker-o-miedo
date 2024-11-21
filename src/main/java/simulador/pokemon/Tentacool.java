@@ -4,8 +4,15 @@
  */
 package simulador.pokemon;
 
-public class Bellsprout extends Pokemon{
-    public Bellsprout(){
-        super ("Bellsprout", 50, 75, TipoPokemon.PLANTAVENENO, Estado.normal);
-    } 
+/**
+ *
+ * @author judav
+ */
+public class Tentacool extends Pokemon {
+    
+    public Tentacool (){
+        
+        super ("Tentacool",40,40,TipoPokemon.AGUAVENENO,Estado.normal);
+    }
+    
 }
