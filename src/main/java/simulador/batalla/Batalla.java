@@ -16,17 +16,17 @@ public class Batalla {
         }
 
         while (pokemon1.getVida() > 0 && pokemon2.getVida() > 0) {
-            // Pokémon 1 ataca
+            // ataque del pokemon 1
             System.out.println("\nTurno de " + pokemon1.getNombre());
             realizarAtaque(pokemon1, pokemon2);
             if (pokemon2.getVida() <= 0) break;
 
-            // Pokémon 2 ataca
+            // ataque del pokemon 2
             System.out.println("\nTurno de " + pokemon2.getNombre());
             realizarAtaque(pokemon2, pokemon1);
         }
 
-        // Determinar el ganador
+        // aqui se ve el ganador 
         if (pokemon1.getVida() > 0) {
             System.out.println("\n" + pokemon1.getNombre() + " de " + entrenador1.getNombre() + " el dio una tunda al otro");
         } else {
