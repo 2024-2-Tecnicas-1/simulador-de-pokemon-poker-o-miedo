@@ -14,7 +14,7 @@ public class Principal {
         
         List<Entrenador> entrenadores = new ArrayList<>();
 
-        // Bienvenida
+        
         System.out.println("Bienvenido al Simulador de Pokemon");
 
         boolean salir = false;
@@ -24,22 +24,20 @@ public class Principal {
             System.out.println("\n Menu Principal ");
             System.out.println("1. Crear Entrenador");
             System.out.println("2. Agregar Pokemon a un Entrenador");
-            System.out.println("3. registrar pokemon");
-            System.out.println("4. Mostrar Entrenadores y sus Pokemon");
-            System.out.println("5. Iniciar Batalla");
-            System.out.println("6. Salir");
+            System.out.println("3. Mostrar Entrenadores y sus Pokemon");
+            System.out.println("4. Iniciar Batalla");
+            System.out.println("5. Salir");
             System.out.print("Selecciona una opcion: ");
 
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
-
+            scanner.nextLine(); 
             switch (opcion) {
                 case 1:
                     
                     System.out.print("Introduce el nombre del entrenador: ");
                     String nombreEntrenador = scanner.nextLine();
                     Entrenador nuevoEntrenador = new Entrenador(nombreEntrenador) {
-                    }; // Instancia abstracta con clase anónima
+                    };
                     entrenadores.add(nuevoEntrenador);
                     System.out.println("Entrenador " + nombreEntrenador + " creado.");
                     break;
@@ -55,7 +53,7 @@ public class Principal {
                         System.out.println((i + 1) + ". " + entrenadores.get(i).getNombre());
                     }
                     int indiceEntrenador = scanner.nextInt() - 1;
-                    scanner.nextLine(); // Limpiar buffer
+                    scanner.nextLine(); 
 
                     if (indiceEntrenador < 0 || indiceEntrenador >= entrenadores.size()) {
                         System.out.println("Entrenador no valido.");
@@ -64,7 +62,7 @@ public class Principal {
 
                     Entrenador entrenadorSeleccionado = entrenadores.get(indiceEntrenador);
 
-                    // Menú para seleccionar qué Pokémon agregar
+                    
                     System.out.println("\nSelecciona un Pokemon para agregar:");
                     System.out.println("1. Bellsprout");
                     System.out.println("2. Farfetch'd");

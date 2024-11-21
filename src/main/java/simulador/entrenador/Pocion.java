@@ -4,7 +4,7 @@ import simulador.pokemon.Pokemon;
 
 public class Pocion {
 
-    // Método que se usa para restaurar la vida de un Pokémon
+    
     public void usar(Pokemon pokemon) {
         int vidaRestaurada = 20;  // Se restauran 20 puntos de vida
         pokemon.setVida(pokemon.getVida() + vidaRestaurada);  // Aumenta la vida del Pokémon
