@@ -15,19 +15,19 @@ public class Principal {
         List<Entrenador> entrenadores = new ArrayList<>();
 
         // Bienvenida
-        System.out.println("¡Bienvenido al Simulador de Pokémon!");
+        System.out.println("Bienvenido al Simulador de Pokemon");
 
         boolean salir = false;
 
         while (!salir) {
             // Menú principal
-            System.out.println("\n--- Menú Principal ---");
+            System.out.println("\n Menu Principal ");
             System.out.println("1. Crear Entrenador");
-            System.out.println("2. Agregar Pokémon a un Entrenador");
-            System.out.println("3. Mostrar Entrenadores y sus Pokémon");
+            System.out.println("2. Agregar Pokemon a un Entrenador");
+            System.out.println("3. Mostrar Entrenadores y sus Pokemon");
             System.out.println("4. Iniciar Batalla");
             System.out.println("5. Salir");
-            System.out.print("Selecciona una opción: ");
+            System.out.print("Selecciona una opcion: ");
 
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
@@ -37,61 +37,88 @@ public class Principal {
                     // Crear un nuevo entrenador
                     System.out.print("Introduce el nombre del entrenador: ");
                     String nombreEntrenador = scanner.nextLine();
-                    Entrenador nuevoEntrenador = new Entrenador(nombreEntrenador) {};
+                    Entrenador nuevoEntrenador = new Entrenador(nombreEntrenador) {
+                    }; // Instancia abstracta con clase anónima
                     entrenadores.add(nuevoEntrenador);
                     System.out.println("Entrenador " + nombreEntrenador + " creado.");
                     break;
 
                 case 2:
-                    // Agregar un Pokémon a un entrenador existente
+                    // Seleccionar un entrenador
                     if (entrenadores.isEmpty()) {
-                        System.out.println("Primero debes crear al menos un entrenador.");
+                        System.out.println("No hay entrenadores creados.");
                         break;
                     }
-
                     System.out.println("Selecciona un entrenador:");
                     for (int i = 0; i < entrenadores.size(); i++) {
                         System.out.println((i + 1) + ". " + entrenadores.get(i).getNombre());
                     }
-
-                    int seleccionEntrenador = scanner.nextInt();
+                    int indiceEntrenador = scanner.nextInt() - 1;
                     scanner.nextLine(); // Limpiar buffer
 
-                    if (seleccionEntrenador < 1 || seleccionEntrenador > entrenadores.size()) {
-                        System.out.println("Selección inválida.");
+                    if (indiceEntrenador < 0 || indiceEntrenador >= entrenadores.size()) {
+                        System.out.println("Entrenador no valido.");
                         break;
                     }
 
-                    Entrenador entrenadorSeleccionado = entrenadores.get(seleccionEntrenador - 1);
+                    Entrenador entrenadorSeleccionado = entrenadores.get(indiceEntrenador);
 
-                    System.out.print("Introduce el nombre del Pokémon: ");
-                    String nombrePokemon = scanner.nextLine();
-                    System.out.print("Introduce la vida del Pokémon: ");
-                    int vidaPokemon = scanner.nextInt();
-                    System.out.print("Introduce el ataque del Pokémon: ");
-                    double ataquePokemon = scanner.nextDouble();
+                    // Menú para seleccionar qué Pokémon agregar
+                    System.out.println("\nSelecciona un Pokemon para agregar:");
+                    System.out.println("1. Bellsprout");
+                    System.out.println("2. Farfetch'd");
+                    System.out.println("3. Growlithe");
+                    System.out.println("4. Hitmonlee");
+                    System.out.println("5. Onix");
+                    System.out.println("6. Psyduck");
+                    System.out.println("7. Tentacool");
+                    System.out.println("8. Voltorb");
+                    System.out.println("9. Zubat");
+                    System.out.println("10. Exeggcute");
+
+                    int opcionPokemon = scanner.nextInt();
                     scanner.nextLine(); // Limpiar buffer
 
-                    System.out.println("Selecciona el tipo del Pokémon:");
-                    TipoPokemon[] tipos = TipoPokemon.values();
-                    for (int i = 0; i < tipos.length; i++) {
-                        System.out.println((i + 1) + ". " + tipos[i].getNombre());
+                    Pokemon pokemonSeleccionado = null;
+                    switch (opcionPokemon) {
+                        case 1:
+                            pokemonSeleccionado = new Bellsprout();
+                            break;
+                        case 2:
+                            pokemonSeleccionado = new Farfetchd();
+                            break;
+                        case 3:
+                            pokemonSeleccionado = new Growlithe();
+                            break;
+                        case 4:
+                            pokemonSeleccionado = new Hitmonlee();
+                            break;
+                        case 5:
+                            pokemonSeleccionado = new Onix();
+                            break;
+                        case 6:
+                            pokemonSeleccionado = new Psyduck();
+                            break;
+                        case 7:
+                            pokemonSeleccionado = new Tentacool();
+                            break;
+                        case 8:
+                            pokemonSeleccionado = new Voltorb();
+                            break;
+                        case 9:
+                            pokemonSeleccionado = new Zubat();
+                            break;
+                        case 10:
+                            pokemonSeleccionado = new Exeggcute();
+                            break;
+                        default:
+                            System.out.println("Selección invalida.");
+                            break;
                     }
 
-                    int seleccionTipo = scanner.nextInt();
-                    scanner.nextLine(); // Limpiar buffer
-
-                    if (seleccionTipo < 1 || seleccionTipo > tipos.length) {
-                        System.out.println("Selección inválida.");
-                        break;
+                    if (pokemonSeleccionado != null) {
+                        entrenadorSeleccionado.AgregarPokemon(pokemonSeleccionado);
                     }
-
-                    TipoPokemon tipoPokemon = tipos[seleccionTipo - 1];
-
-                    Pokemon nuevoPokemon = new Pokemon(nombrePokemon, vidaPokemon, ataquePokemon, tipoPokemon, Estado.normal) {};
-                    entrenadorSeleccionado.Agregarpokemon(nuevoPokemon);
-
-                    System.out.println("¡Pokémon " + nombrePokemon + " agregado a " + entrenadorSeleccionado.getNombre() + "!");
                     break;
 
                 case 3:
@@ -100,7 +127,7 @@ public class Principal {
                         System.out.println("No hay entrenadores creados.");
                     } else {
                         for (Entrenador entrenador : entrenadores) {
-                            entrenador.mostrarpokemones();
+                            entrenador.MostrarPokemones();
                         }
                     }
                     break;
@@ -128,31 +155,31 @@ public class Principal {
                     int indiceEntrenador2 = scanner.nextInt();
                     scanner.nextLine(); // Limpiar buffer
 
-                    if (indiceEntrenador1 == indiceEntrenador2 || 
-                        indiceEntrenador1 < 1 || indiceEntrenador1 > entrenadores.size() || 
-                        indiceEntrenador2 < 1 || indiceEntrenador2 > entrenadores.size()) {
-                        System.out.println("Selección inválida.");
-                        break;
+                    if (indiceEntrenador1 == indiceEntrenador2
+                            || indiceEntrenador1 < 1 || indiceEntrenador1 > entrenadores.size()
+                            || indiceEntrenador2 < 1 || indiceEntrenador2 > entrenadores.size()) {
+                        System.out.println("Seleccion de entrenadores invalida.");
+                    } else {
+                        Entrenador entrenador1 = entrenadores.get(indiceEntrenador1 - 1);
+                        Entrenador entrenador2 = entrenadores.get(indiceEntrenador2 - 1);
+
+                        // Crear una instancia de Batalla y llamar al método iniciarBatalla
+                        Batalla batalla = new Batalla();
+                        batalla.iniciarBatalla(entrenador1, entrenador2);
                     }
-
-                    Entrenador entrenador1 = entrenadores.get(indiceEntrenador1 - 1);
-                    Entrenador entrenador2 = entrenadores.get(indiceEntrenador2 - 1);
-
-                    Batalla batalla = new Batalla();
-                    batalla.iniciarBatalla(entrenador1, entrenador2);
                     break;
 
                 case 5:
-                    // Salir del programa
-                    System.out.println("¡Gracias por jugar! Hasta la próxima.");
                     salir = true;
                     break;
 
                 default:
-                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                    System.out.println("Opción invalida. Intenta de nuevo.");
+                    break;
             }
         }
 
         scanner.close();
+        System.out.println("Hasta luego");
     }
 }

@@ -24,7 +24,7 @@ public abstract class Pokemon {
         System.out.println("Nombre: " + nombre);
         System.out.println("Vida: " + vida);
         System.out.println("Ataque: " + Pataque);
-        System.out.println("Tipos de Pokémon: " + tipos);
+        System.out.println("Tipo de Pokémon: " + tipos);
         System.out.println("Estado del Pokémon: " + estado);
     }
 

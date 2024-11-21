@@ -6,73 +6,93 @@ import java.util.Scanner;
 import simulador.pokemon.Pokemon;
 
 public abstract class Entrenador {
-    //atributos del personaje
-    public String nombre;
-    public List <Pokemon> Pokemones; 
-    
-    //constructor 
-    public Entrenador(String nombre){
-        this.nombre=nombre;
-        this.Pokemones= new ArrayList<>();
-    }
-    //el metodo para capturar un pokemon
-    public void Agregarpokemon(Pokemon Pokemon){
-        Pokemones.add (Pokemon);
-        System.out.println(Pokemon.getNombre()+"se añadio al equipo"+nombre);
-        
-    }
-    //el metodo para el entrenamiento de los pokemones
-    public void Entrenarpokemon (Pokemon Pokemon){
-        if (Pokemones.contains(Pokemon)){
-            int nuevaVida=(int) (Pokemon.getVida()*1.1);
-            Pokemon.setVida(nuevaVida);
-            System.out.println(Pokemon.getVida() +" a entrenado mucho, ahora su vida a incrementado a "+ nuevaVida);
-        }else 
-            System.out.println(Pokemon.getNombre() +" no se encuentra en el equipo "+ nombre);
-        
-        if (Pokemones.contains(Pokemon)){
-            double nuevoPataque=Pokemon.getPataque()*1.1;
-            Pokemon.setPataque(nuevoPataque);
-            System.out.println(Pokemon.getNombre()+" a entrenado mucho, ahora su poder es de "+nuevoPataque);
-        }else {
-            System.out.println(Pokemon.getNombre() +" no se encuentra en el equipo "+ nombre);
-        }
-    }
-    //el metodo para que muestre lo pokemones actuales o accesibles del equipo
-    public void mostrarpokemones(){
-        System.out.println("Pokemones de "+nombre+" :");
-        for (Pokemon Pokemon : Pokemones){
-                System.out.println("- " +Pokemon.getNombre()+" (Vida: "+Pokemon.getVida() +" Ataque "+ Pokemon.getPataque() +" )");
-        }
-    }
-    //el metodo para preparar la batalla
-    public Pokemon prepararBatalla() {
-    if (Pokemones.isEmpty()) {   
-        System.out.println(nombre + " no tiene Pokémon para la batalla");
-        return null;
-    }
-    
-    System.out.println(nombre + " selecciona un Pokémon");
-    mostrarpokemones();
-    
-    Scanner sc = new Scanner(System.in); 
-    int seleccion = sc.nextInt();
-    
-    if (seleccion < 1 || seleccion > Pokemones.size()) {
-        System.out.println("Selección inválida");
-        return null;
-    }
-    Pokemon pokemonSeleccionado = Pokemones.get(seleccion - 1);
-    System.out.println(pokemonSeleccionado.getNombre() + " seleccionado para la batalla");
-    return pokemonSeleccionado;
-    }
+    private String nombre;
+    private List<Pokemon> Pokemones;
 
-    public void setNombre(String nombre) {
+    public Entrenador(String nombre) {
         this.nombre = nombre;
+        this.Pokemones = new ArrayList<>();
     }
 
-    public void setPokemones(List<Pokemon> Pokemones) {
-        this.Pokemones = Pokemones;
+    public void AgregarPokemon(Pokemon pokemon) {
+        Pokemones.add(pokemon);
+        System.out.println(pokemon.getNombre() + " se anadio al equipo de " + nombre);
+    }
+
+    public void EntrenarPokemon(Pokemon pokemon) {
+        if (Pokemones.contains(pokemon)) {
+            int nuevaVida = (int) (pokemon.getVida() * 1.1);
+            double nuevoPataque = pokemon.getPataque() * 1.1;
+            pokemon.setVida(nuevaVida);
+            pokemon.setPataque(nuevoPataque);
+            System.out.println(pokemon.getNombre() + " ha entrenado mucho: Vida aumentada a " + nuevaVida + ", Ataque aumentado a " + nuevoPataque);
+        } else {
+            System.out.println(pokemon.getNombre() + " no se encuentra en el equipo de " + nombre);
+        }
+    }
+
+    public void MostrarPokemones() {
+        System.out.println("Pokemon de " + nombre + ":");
+        for (Pokemon pokemon : Pokemones) {
+            System.out.println("- " + pokemon.getNombre() + " (Vida: " + pokemon.getVida() + " Ataque: " + pokemon.getPataque() + ")");
+        }
+    }
+
+    public Pokemon PrepararBatalla() {
+        if (Pokemones.isEmpty()) {
+            System.out.println(nombre + " no tiene Pokemon para la batalla");
+            return null;
+        }
+
+        System.out.println(nombre + " selecciona un Pokemon");
+        MostrarPokemones();
+
+        Scanner sc = new Scanner(System.in);
+        int seleccion = -1;
+
+        while (seleccion < 1 || seleccion > Pokemones.size()) {
+            try {
+                seleccion = Integer.parseInt(sc.nextLine());
+                if (seleccion < 1 || seleccion > Pokemones.size()) {
+                    System.out.println("Seleccion invalida, por favor ingresa un numero valido.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor ingresa un numero valido.");
+            }
+        }
+
+        Pokemon pokemonSeleccionado = Pokemones.get(seleccion - 1);
+        System.out.println(pokemonSeleccionado.getNombre() + " seleccionado para la batalla");
+        return pokemonSeleccionado;
+    }
+
+    // Metodo para realizar el ataque y reducir vida
+    public void RealizarAtaque(Pokemon atacante, Pokemon defensor) {
+        double dano = atacante.getPataque();  // El dano es igual al poder de ataque del atacante
+        double nuevaVida = defensor.getVida() - dano;  // Reducimos la vida del defensor por el dano causado
+        defensor.setVida((int) Math.max(nuevaVida, 0));  // Aseguramos que la vida no sea negativa
+        System.out.println(atacante.getNombre() + " ataca a " + defensor.getNombre() + " causando " + dano + " de dano. Vida restante de " + defensor.getNombre() + ": " + defensor.getVida());
+    }
+
+    public void ParticiparBatalla(Entrenador oponente) {
+        System.out.println(nombre + " va a pelear contra " + oponente.getNombre());
+
+        // Seleccionamos los Pokemon para la batalla
+        Pokemon miPokemon = this.PrepararBatalla();
+        Pokemon pokemonOponente = oponente.PrepararBatalla();
+
+        if (miPokemon == null || pokemonOponente == null) {
+            System.out.println("La batalla no pudo comenzar debido a la falta de Pokemon.");
+            return;
+        }
+
+        // Ejemplo simple: un solo ataque entre los Pokemon
+        RealizarAtaque(miPokemon, pokemonOponente);
+        
+        // Verificamos si el Pokemon oponente ha perdido toda su vida
+        if (pokemonOponente.getVida() <= 0) {
+            System.out.println(pokemonOponente.getNombre() + " ha sido derrotado.");
+        }
     }
 
     public String getNombre() {
@@ -81,10 +101,5 @@ public abstract class Entrenador {
 
     public List<Pokemon> getPokemones() {
         return Pokemones;
-    }
-    
-    //metodo para iniciar la batalla
-    public void participarbatalla(Entrenador oponente){
-        System.out.println(nombre +" va a pelear contra "+ oponente.getNombre());
     }
 }

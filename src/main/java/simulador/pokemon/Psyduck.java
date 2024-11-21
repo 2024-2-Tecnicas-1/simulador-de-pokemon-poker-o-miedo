@@ -8,6 +8,9 @@ package simulador.pokemon;
  *
  * @author USUARIO
  */
-public class Psyduck {
-    
+public class Psyduck extends Pokemon{
+    public Psyduck (){
+        super ("Psyduck",50,52,TipoPokemon.AGUA,Estado.normal);
+    }
 }
+
