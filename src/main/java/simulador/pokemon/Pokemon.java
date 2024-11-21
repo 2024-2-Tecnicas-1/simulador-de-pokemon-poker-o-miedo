@@ -63,8 +63,8 @@ public abstract class Pokemon {
         return Pataque;
     }
 
-    public List<TipoPokemon> getTipos() {
-        return (List<TipoPokemon>) tipos;
+    public TipoPokemon getTipos() {
+        return tipos;
     }
 
     public Estado getEstado() {
